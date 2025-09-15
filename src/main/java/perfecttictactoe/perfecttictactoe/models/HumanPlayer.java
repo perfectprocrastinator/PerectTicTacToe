@@ -1,5 +1,7 @@
 package perfecttictactoe.perfecttictactoe.models;
 
+import perfecttictactoe.perfecttictactoe.strategies.playing.PlayingStrategy;
+
 public class HumanPlayer extends  Player{
     private User user;
     public HumanPlayer(GameSymbol gameSymbol,User user) {
@@ -8,8 +10,8 @@ public class HumanPlayer extends  Player{
     }
 
     @Override
-    public void play() {
+    public BoardCell makeMove(Board board) {
         // Implementation for human player move
-        return;
+        return null;
     }
 }

@@ -1,15 +1,23 @@
 package perfecttictactoe.perfecttictactoe.models;
 
+import lombok.Getter;
+import lombok.Setter;
+import perfecttictactoe.perfecttictactoe.strategies.playing.PlayingStrategy;
+@Getter
+@Setter
 public class BotPlayer extends Player{
-    public BotPlayer(GameSymbol gameSymbol,GameSymbol symbol) {
-        super(gameSymbol);
-        this.level=level;
-    }
 
     private GameLevel level;
+    private PlayingStrategy playingStrategy;
+
+    public BotPlayer(GameSymbol gameSymbol,GameLevel level, PlayingStrategy playingStrategy) {
+        super(gameSymbol);
+        this.level=level;
+        this.playingStrategy = playingStrategy;
+    }
 
     @Override
-    public void play() {
-
+    public BoardCell makeMove(Board board) {
+       return playingStrategy.makeMove(board);
     }
 }
