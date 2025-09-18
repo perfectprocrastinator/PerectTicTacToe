@@ -1,5 +1,8 @@
 package perfecttictactoe.perfecttictactoe.models;
 
+import lombok.Builder;
+
+@Builder
 public class User {
     private String name;
     private String email;

@@ -1,7 +1,10 @@
 package perfecttictactoe.perfecttictactoe.models;
 
+import lombok.Builder;
+import lombok.experimental.SuperBuilder;
 import perfecttictactoe.perfecttictactoe.strategies.playing.PlayingStrategy;
 
+@SuperBuilder
 public class HumanPlayer extends  Player{
     private User user;
     public HumanPlayer(GameSymbol gameSymbol,User user) {

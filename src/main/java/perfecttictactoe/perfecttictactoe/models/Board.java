@@ -20,4 +20,9 @@ public class Board {
         return boardCells;
 
     }
+
+    public void update(BoardCell move){
+
+        cells.get(move.getRow()).get(move.getCol()).setGameSymbol(move.getGameSymbol());
+    }
 }

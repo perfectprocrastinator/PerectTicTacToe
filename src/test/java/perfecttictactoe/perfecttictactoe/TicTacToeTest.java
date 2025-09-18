@@ -23,11 +23,23 @@ public class TicTacToeTest {
         Game game=Game.GameBuilder
                 .builder()
                 .withSize(DEFAULT_BOARD_SIZE)
-                .witPlayer(new HumanPlayer(GameSymbol.X, new User()))
-                .witPlayer(new BotPlayer(GameSymbol.O, GameLevel.EASY,new RandomPlayingStrategy()))
+                .witPlayer(HumanPlayer.builder()
+                        .user(User.builder().email("b@c").name("Bilal").build())
+                        .gameSymbol(GameSymbol.X)
+                        .build())
+                .witPlayer(BotPlayer.builder()
+                        .gameSymbol(GameSymbol.O)
+                        .playingStrategy(new RandomPlayingStrategy())
+                        .build())
                 .build();
 
+        Assertions.assertNotNull(game, "Game should be created");
+        Assertions.assertEquals(GameStatus.IN_PROGRESS, game.getStatus(), "New game should be in progress");
+        Assertions.assertEquals(2,game.getPlayers().size(), "Game should have 2 players");
+
     }
+
+
 
     @Test
     public void testCreateBoard(){
