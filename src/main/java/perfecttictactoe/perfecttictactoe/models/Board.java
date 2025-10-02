@@ -5,6 +5,9 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 @Getter
 public class Board {
     private int size;
@@ -15,14 +18,27 @@ public class Board {
     }
 
     private List<List<BoardCell>> initializeBoardCells(int size){
-        List<BoardCell> firstRow = Collections.nCopies(size,new BoardCell());
-        List<List<BoardCell>> boardCells= Collections.nCopies(size, firstRow);
-        return boardCells;
+        List<List<BoardCell>> cells=new ArrayList<>();
+        IntStream.range(0,size).forEach(row->{
+            List<BoardCell> rowCells=new ArrayList<>();
+            IntStream.range(0,size).forEach(col->{
+                rowCells.add(new BoardCell(row,col,GameSymbol.EMPTY));
+            });
+            cells.add(rowCells);
+        });
+        return cells;
 
     }
 
     public void update(BoardCell move){
 
         cells.get(move.getRow()).get(move.getCol()).setGameSymbol(move.getGameSymbol());
+    }
+
+    public List<BoardCell>  getAvailableCells(){
+        return cells.stream()
+                .flatMap(List::stream)
+                .filter(cell -> cell.getGameSymbol() == GameSymbol.EMPTY)
+                .collect(Collectors.toList());
     }
 }

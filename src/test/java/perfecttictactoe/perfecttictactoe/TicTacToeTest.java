@@ -23,11 +23,11 @@ public class TicTacToeTest {
         Game game=Game.GameBuilder
                 .builder()
                 .withSize(DEFAULT_BOARD_SIZE)
-                .witPlayer(HumanPlayer.builder()
+                .withPlayer(HumanPlayer.builder()
                         .user(User.builder().email("b@c").name("Bilal").build())
                         .gameSymbol(GameSymbol.X)
                         .build())
-                .witPlayer(BotPlayer.builder()
+                .withPlayer(BotPlayer.builder()
                         .gameSymbol(GameSymbol.O)
                         .playingStrategy(new RandomPlayingStrategy())
                         .build())
